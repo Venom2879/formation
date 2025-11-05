@@ -1,0 +1,74 @@
+.controls {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+}
+
+body {
+    /* Ajouts pour centrer joliment les boutons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    min-height: 100vh;
+    margin: 0;
+    /* Ajout d'une police de secours */
+    font-family: "SF Pro Text", sans-serif;
+    background: var(--bg);
+}
+
+button {
+    border-radius: 1rem; /* Corrigé : ren -> rem */
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1ch;
+    background: var(--bg);
+    border: 4px solid transparent;
+    box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset; /* Corrigé : Ajout d'un point-virgule */
+    cursor: pointer;
+    /* Corrigé : linear-gradiant -> linear-gradient et border box -> border-box */
+    background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--glow),
+    linear-gradient(black, black) border-box;
+    transition: background-size 0.24s;
+    touch-action: none;
+    position: relative;
+    padding: 1rem 2rem;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset;
+    background: var(--bg);
+    z-index: 2;
+    border-radius: 1rem; /* Corrigé : "border radius" -> "border-radius" */
+}
+
+button span{
+    background: var(--glow), black;
+    /* Ajout de la version préfixée pour une meilleure compatibilité */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    inset: 0;
+}
+
+:root:has(button:active) {
+    --size: 300px;
+}
+
+button::after {
+    content: "";
+    position: absolute;
+    /* Corrigé : +4px -> -4px pour que le flou apparaisse à l'extérieur */
+    inset: -4px;
+    filter: blur(20px);
+    border: 4px solid transparent;
+    background: var(--glow);
+    border-radius: 1rem;
+}

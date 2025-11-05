@@ -1,0 +1,20 @@
+:root {
+    --x: 0;
+    --y: 0;
+    --xp: 0;
+    --yp: 0;
+    /* J'ai ajusté cette ligne pour une meilleure variation de couleur sur 360 degrés */
+    --hue: calc(0 + (var(--xp) * 360));
+    --bg: hsl(0 0% 10%);
+    --size: 100px;
+    --glow: radial-gradient(
+            50% 50% at center,
+            hsl(var(--hue) 80% 85%),
+            hsl(var(--hue) 80% 70%),
+            transparent
+    )
+        /* La syntaxe de calc() a été corrigée ici */
+    calc(var(--x) * 1px - (var(--size) / 2))
+    calc(var(--y) * 1px - (var(--size) / 2)) /
+    var(--size) var(--size) no-repeat fixed;
+}
